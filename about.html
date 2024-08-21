@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Sobre Nosotros - Mi Sitio Web</title>
+    <style>
+        .carousel {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,17 +53,49 @@
     <main>
         <section class="about">
             <h1>Sobre Nosotros</h1>
-            <p>En <strong>Mi Sitio Web</strong>, estamos comprometidos a ofrecer soluciones de alta calidad para satisfacer las necesidades de nuestros clientes. Con años de experiencia en la industria, nuestro equipo de profesionales se dedica a innovar y mejorar continuamente para asegurar que nuestros servicios superen las expectativas.</p>
-            <p>Nos especializamos en una variedad de áreas, desde el desarrollo web hasta la consultoría tecnológica, asegurando que cada proyecto sea manejado con la máxima atención al detalle y profesionalismo.</p>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="_99199832_edificios.jpg" alt="Imagen 1">
+                    <img src="images.jpg" alt="Imagen 2">
+                    <img src="tipos-de-empresas.jpg" alt="Imagen 3">
+                </div>
+                <div class="carousel-controls">
+                    <button id="prev">‹</button>
+                    <button id="next">›</button>
+                </div>
+            </div>
+            <p>En <strong>Mi Sitio Web</strong>, estamos comprometidos a ofrecer soluciones de alta calidad para satisfacer las necesidades de nuestros clientes...</p>
             <h2>Nuestra Misión</h2>
-            <p>Nuestra misión es proporcionar servicios excepcionales que ayuden a nuestros clientes a alcanzar sus metas. Creemos en la importancia de la confianza y la transparencia, y nos esforzamos por construir relaciones duraderas con nuestros clientes basadas en estos valores.</p>
+            <p>Nuestra misión es proporcionar servicios excepcionales que ayuden a nuestros clientes a alcanzar sus metas...</p>
             <h2>Nuestro Equipo</h2>
-            <p>Contamos con un equipo diverso y talentoso de profesionales que están apasionados por lo que hacen. Cada miembro de nuestro equipo aporta una rica experiencia y una perspectiva única, lo que nos permite abordar cada proyecto con creatividad y eficacia.</p>
+            <p>Contamos con un equipo diverso y talentoso de profesionales que están apasionados por lo que hacen...</p>
         </section>
     </main>
     <footer>
         <p>&copy; Examen Global Programacion web 1 Erick Saul Limon Moran</p>
     </footer>
-    <script src="scripts.js"></script>
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-images img');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        
+        let currentIndex = 0;
+
+        function showImage(index) {
+            const translateX = -index * 100;
+            carouselImages.style.transform = `translateX(${translateX}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showImage(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        });
+    </script>
 </body>
 </html>
